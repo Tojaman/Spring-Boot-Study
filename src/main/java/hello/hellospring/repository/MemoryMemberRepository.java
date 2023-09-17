@@ -7,7 +7,6 @@ import java.util.*;
 
 // @Repository : 스프링이 MemoryMemberRepository 인식하게 하기 위함
 // (만약 @Repository를 안붙이면 순수 자바 클래스인 MemoryMemberRepository를 스프링이 인식할 수 없음)
-
 //@Repository
 public class MemoryMemberRepository  implements MemberRepository {
 

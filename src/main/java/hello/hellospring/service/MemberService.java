@@ -9,16 +9,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-// @Service : 스프링 빈에 등록
+// @Service : 스프링 컨테이너에 등록
 // (만약 @Service를 안붙이면 순수 자바 클래스인 MemberService를 스프링이 인식할 수 없음)
 //@Service
 public class MemberService {
 
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
-
-    // Test 코드에서 DI(Dependency Injection)가 가능하게 하기 위에 위 코드를 아래 코드로 변경한다.
+//    Test 코드에서 DI(Dependency Injection)가 가능하게 하기 위에 위 코드를 아래 코드로 변경한다.
     private final MemberRepository memberRepository;
-
+//    @Autowired -> 의존성 주입(DI) : MemberService 생성될 때 스프링 빈에 등록되어 있는 MemberRepository(실제 구현체 MemoryMemberRepository) 객체를 주입
 //    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
