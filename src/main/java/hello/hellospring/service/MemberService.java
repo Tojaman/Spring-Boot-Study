@@ -27,11 +27,22 @@ public class MemberService {
      * 회원가입
      */
     public Long join(Member member) {
+        long start = System.currentTimeMillis();
+
+        try {
+            validateDuplicateMember(member);
+            memberRepository.save(member);
+            return member.getId();
+        }finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join = " + timeMs + "ms");
+        }
         // 같은 이름의 중복 회원X
         // findByName의 return 값은 Optional 값이므로 Optional 메소드인 ifPresent() 바로 사용 가능
-        validateDuplicateMember(member);
-        memberRepository.save(member);
-        return member.getId();
+//        validateDuplicateMember(member);
+//        memberRepository.save(member);
+//        return member.getId();
     }
 
     private void validateDuplicateMember(Member member) {
@@ -45,7 +56,15 @@ public class MemberService {
      * 전체 회원 조회
      */
     public List<Member> findMembers() {
-        return memberRepository.findAll();
+        long start = System.currentTimeMillis();
+        try {
+            return memberRepository.findAll();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("findMembers " + timeMs + "ms");
+        }
+
     }
 
     /**
